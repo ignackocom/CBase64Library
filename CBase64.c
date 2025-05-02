@@ -89,7 +89,10 @@ char* BASE64_Encode(const unsigned char* inputdata, size_t inputlength, size_t* 
 {
     const size_t mod_table[] = { 0, 2, 1 };
     size_t i, j;
+    UINT32 octet_a, octet_b, octet_c;
+    UINT32 triple;
     char* outputdata;
+
 
     *outputlength = 4 * ((inputlength + 2) / 3);
 
@@ -98,11 +101,11 @@ char* BASE64_Encode(const unsigned char* inputdata, size_t inputlength, size_t* 
 
     for (i = 0, j = 0; i < inputlength;) 
     {
-        UINT32 octet_a = i < inputlength ? inputdata[i++] : 0;
-        UINT32 octet_b = i < inputlength ? inputdata[i++] : 0;
-        UINT32 octet_c = i < inputlength ? inputdata[i++] : 0;
+        octet_a = i < inputlength ? inputdata[i++] : 0;
+        octet_b = i < inputlength ? inputdata[i++] : 0;
+        octet_c = i < inputlength ? inputdata[i++] : 0;
 
-        UINT32 triple = (octet_a << 16) | (octet_b << 8) | octet_c;
+        triple = (octet_a << 16) | (octet_b << 8) | octet_c;
 
         outputdata[j++] = base64_chars[(triple >> 18) & 0x3F];
         outputdata[j++] = base64_chars[(triple >> 12) & 0x3F];
@@ -127,6 +130,8 @@ unsigned char* BASE64_Decode(const char* inputdata, size_t* outputlength)
     size_t inputlength;
     size_t padding;
     size_t i, j;
+    UINT32 sextet_a, sextet_b, sextet_c, sextet_d;
+    UINT32 triple;
     unsigned char* outputdata;
 
     padding = 0;
@@ -143,12 +148,12 @@ unsigned char* BASE64_Decode(const char* inputdata, size_t* outputlength)
 
     for (i = 0, j = 0; i < inputlength;)
     {
-        UINT32 sextet_a = (UINT32)base64_char_value(inputdata[i++]);
-        UINT32 sextet_b = (UINT32)base64_char_value(inputdata[i++]);
-        UINT32 sextet_c = (UINT32)base64_char_value(inputdata[i++]);
-        UINT32 sextet_d = (UINT32)base64_char_value(inputdata[i++]);
+        sextet_a = (UINT32)base64_char_value(inputdata[i++]);
+        sextet_b = (UINT32)base64_char_value(inputdata[i++]);
+        sextet_c = (UINT32)base64_char_value(inputdata[i++]);
+        sextet_d = (UINT32)base64_char_value(inputdata[i++]);
 
-        UINT32 triple = (UINT32)((sextet_a << 18)
+        triple = (UINT32)((sextet_a << 18)
                                | (sextet_b << 12)
                                | ((sextet_c & 0x3F) << 6)
                                | (sextet_d & 0x3F));
