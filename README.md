@@ -1,4 +1,4 @@
-# CBase64
+# CBase64Library
 C Base64 library.<br/>
 C89, C99 and >C99 compatible, CPP98 and >CPP98 compatible, Embedded C compatible.
 
@@ -41,3 +41,4 @@ int main(void)
 
 # History of changes ...
 better C89 support added<br/>
+2025 05 09 repository renamed to CBase64Library<br/>
