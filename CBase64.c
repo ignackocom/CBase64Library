@@ -1,58 +1,25 @@
 /******************************************************************************
 * \file      CBase64.c
 * \author    Peter Potrok
+*            ignacko.com@outlook.com
 * \copyright Copyright (c) 1994 - 2025
 *            MIT License (see License.txt file)
 * \brief     C Base64 library
 *            C89, C99 and >C99 compatible, CPP compatible, Embedded C compatible
 * \details
 *
-* \see
+* \see       https://github.com/ignackocom
+*            https://en.cppreference.com/w/c
 *            and other resources
 ******************************************************************************/
 
+#include "Datatype.h"
 #include "CBase64.h"
 
 
 #if defined(__clang__)
 #pragma clang diagnostic ignored "-Wold-style-cast"
 #endif /* defined(__clang__) */
-
-
-/******************************************************************************
-**  32bit integer type
-*/
-#if !defined(__cplusplus)
-
-    #if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L
-
-        /* since C99 */
-        #include <stdint.h>
-        typedef  uint32_t       UINT32;
-
-    #else /*  defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L */
-
-        /* C95 and less */
-        typedef  unsigned long  UINT32;
-
-    #endif /*  defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L */
-
-#else /* !defined(__cplusplus) */
-
-    #if __cplusplus > 199711L
-
-        /* since CPP11 */
-        #include <cstdint>
-        typedef  std::uint32_t  UINT32;
-
-    #else /* __cplusplus > 199711L */
-
-        /* CPP98 */
-        typedef  unsigned long  UINT32;
-
-    #endif /* __cplusplus > 199711L */
-
-#endif /* !defined(__cplusplus) */
 
 
 /******************************************************************************
@@ -169,3 +136,10 @@ unsigned char* BASE64_Decode(const char* inputdata, size_t* outputlength)
 #if defined(__clang__)
 #pragma clang unsafe_buffer_usage end
 #endif /* defined(__clang__) */
+
+
+
+long CBASE64_VERSION(void)
+{
+    return (CBASE64_H);
+}

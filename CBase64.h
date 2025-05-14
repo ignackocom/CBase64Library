@@ -1,13 +1,15 @@
 /******************************************************************************
 * \file      CBase64.h
 * \author    Peter Potrok
+*            ignacko.com@outlook.com
 * \copyright Copyright (c) 1994 - 2025
 *            MIT License (see License.txt file)
 * \brief     C Base64 library
 *            C89, C99 and >C99 compatible, CPP compatible, Embedded C compatible
 * \details
 *
-* \see
+* \see       https://github.com/ignackocom
+*            https://en.cppreference.com/w/c
 *            and other resources
 ******************************************************************************/
 
@@ -59,6 +61,19 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
+
+
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+    long CBASE64_VERSION(void);
+
+#ifdef __cplusplus
+}
+#endif
+
 
 
 #endif /* CBASE64_H */
