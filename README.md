@@ -42,3 +42,4 @@ int main(void)
 # History of changes ...
 better C89 support added<br/>
 2025 05 09 repository renamed to CBase64Library<br/>
+2025 05 26 Datatype.h C89 and CPP98 UInt32 and Int32 bug fixed<br/>
