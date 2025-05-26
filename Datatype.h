@@ -20,6 +20,8 @@
 
 #if !defined(__cplusplus)
 
+    #include <limits.h>
+
     #if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L
 
         /* since C99 */
@@ -28,6 +30,8 @@
     #endif
 
 #else
+
+    #include <climits>
 
     #if defined(__cplusplus) && __cplusplus > 199711L
 
@@ -154,8 +158,17 @@ typedef     LongDouble      LONGDOUBLE;
         typedef  short          Int16;
         typedef  unsigned short UInt16;
 
-        typedef  long           Int32;
-        typedef  unsigned long  UInt32;
+        #if ULONG_MAX == 0xFFFFFFFF
+
+            typedef  long           Int32;
+            typedef  unsigned long  UInt32;
+
+        #else
+
+            typedef  int            Int32;
+            typedef  unsigned int   UInt32;
+
+        #endif
 
     #endif /*  defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L */
 
@@ -187,8 +200,17 @@ typedef     LongDouble      LONGDOUBLE;
         typedef  short          Int16;
         typedef  unsigned short UInt16;
 
-        typedef  long           Int32;
-        typedef  unsigned long  UInt32;
+        #if ULONG_MAX == 0xFFFFFFFF
+
+            typedef  long           Int32;
+            typedef  unsigned long  UInt32;
+
+        #else
+
+            typedef  int            Int32;
+            typedef  unsigned int   UInt32;
+
+        #endif
 
     #endif /* __cplusplus > 199711L */
 
